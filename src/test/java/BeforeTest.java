@@ -72,11 +72,21 @@ public class BeforeTest {
 
     public void quitTask(){
         Runtime runtime = Runtime.getRuntime();
-        try {
-            runtime.exec("taskkill /F /IM node.exe");
-            runtime.exec("taskkill /F /IM cmd.exe");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(SystemUtils.IS_OS_WINDOWS) {
+            try {
+                runtime.exec("taskkill /F /IM node.exe");
+                runtime.exec("taskkill /F /IM cmd.exe");
+            } catch (IOException e) {
+                e.fillInStackTrace();
+            }
+        }
+        if(SystemUtils.IS_OS_MAC){
+            try{
+                runtime.exec("killall appium");
+                runtime.exec("exit");
+            }catch (IOException e){
+                e.fillInStackTrace();
+            }
         }
     }
 

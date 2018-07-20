@@ -48,9 +48,6 @@
                         <apkDir>${apkDir}</apkDir>
                         <deviceName>${deviceName}</deviceName>
                         <version>${version}</version>
-                        <appPackage>${appPackage}</appPackage>
-                        <appActivity>${appActivity}</appActivity>
-                        <automationName>${automationName}</automationName>
                         <fullReset>${fullReset}</fullReset>
                     </systemPropertyVariables>
                 </configuration>
