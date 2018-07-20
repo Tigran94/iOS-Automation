@@ -63,7 +63,58 @@ public class HttpClient {
         } catch (IOException e) {
             throw new ApiException(e.getMessage());
         }
-
        return responseJson.contains(projectName);
+    }
+
+    public static boolean checkTask(String taskName){
+        List<String> projects = null;
+        Response response;
+        String responseJson;
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+        RequestBody body = RequestBody.create(mediaType, "token=" + ACCESS_TOKEN  +
+                 "&resource_types=[\"items\"]");
+
+        Request request = new Request.Builder()
+                .url(BASE_URL)
+                .post(body)
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .build();
+
+        try {
+            response = client.newCall(request).execute();
+            responseJson = response.body().string();
+
+
+        } catch (IOException e) {
+            throw new ApiException(e.getMessage());
+        }
+        return responseJson.contains(taskName);
+    }
+
+    public static void uncompleteTask(){
+        Response response;
+        String responseJson;
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+        RequestBody body = RequestBody.create(mediaType, "token=" + ACCESS_TOKEN  +
+                "&commands=[{\"type\": \"item_uncomplete\", \"uuid\": \"710a60e1-174a-4313-bb9f-4df01e0349fd\", \"args\": {\"ids\": [2738523160]}}]");
+
+        Request request = new Request.Builder()
+                .url(BASE_URL)
+                .post(body)
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .build();
+
+        try {
+            response = client.newCall(request).execute();
+            responseJson = response.body().string();
+
+
+        } catch (IOException e) {
+            throw new ApiException(e.getMessage());
+        }
     }
 }

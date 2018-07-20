@@ -54,13 +54,14 @@ public class TestExample extends BaseTest {
         }catch (Exception e){
         }
         homePage.clickBurgerMenu();
+        homePage.clickProjectsDownButton();
         homePage.clickProject("Project1");
         projectPage.clickFabButton();
         projectPage.setTaskName("Task1");
         projectPage.clickSendButton();
         projectPage.clickBackButton();
 
-        //TODO -> api call
+        HttpClient.checkTask("Task1");
     }
 
     @Test
@@ -77,11 +78,13 @@ public class TestExample extends BaseTest {
         }catch (Exception e){
         }
         homePage.clickBurgerMenu();
+        homePage.clickProjectsDownButton();
         homePage.clickProject("Project1");
         projectPage.clickTask("Task1");
         taskPage.clickCompleteButton();
 
-        //TODO -> api call
+
+        HttpClient.uncompleteTask();
 
         Assert.assertTrue(projectPage.checkTask("Task1"),"Task isn't present");
 

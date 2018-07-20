@@ -57,6 +57,11 @@ public class HomePage {
     public void clickBurgerMenu(){
        // wait.until(ExpectedConditions.elementToBeClickable(burgerMenuButton)).click();
         burgerMenuButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     public void clickProjectsDownButton(){
        // wait.until(ExpectedConditions.elementToBeClickable(projectsDownButton)).click();
@@ -75,6 +80,7 @@ public class HomePage {
         for(WebElement i:burgerMenuItemsTexts){
             if(i.getText().equals(projectName)){
                 i.click();
+                break;
             }
         }
     }
