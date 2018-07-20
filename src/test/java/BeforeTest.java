@@ -1,9 +1,11 @@
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import sun.plugin2.util.SystemUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +15,10 @@ import java.net.URL;
 public class BeforeTest {
     private String apkDir = System.getProperty("apkDir");
     private String deviceName = System.getProperty("deviceName");
+    private String systemOS = System.getProperty("os.name");
+
+
+
 
 
     private static AndroidDriver driver;
@@ -37,13 +43,27 @@ public class BeforeTest {
     }
 
 
+
+
+
     public void startServer(){
         Runtime runtime = Runtime.getRuntime();
-        try {
-            runtime.exec("cmd.exe /c start cmd.exe /k \"appium -a 127.0.0.1 -p 4723 --session-override -dc \"{\"\"noReset\"\": \"\"false\"\"}\"\"");
+        if(SystemUtils.IS_OS_WINDOWS){
+            try {
+                runtime.exec("cmd.exe /c start cmd.exe /k \"appium -a 127.0.0.1 -p 4723 --session-override -dc \"{\"\"noReset\"\": \"\"false\"\"}\"\"");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(SystemUtils.IS_OS_MAC){
+            try{
+                runtime.exec("appium -a 127.0.0.1 -p 4723");
+            }catch (IOException e){
+                e.fillInStackTrace();
+            }
+        }
+        try{
             Thread.sleep(10000);
-        } catch (IOException e) {
-            e.printStackTrace();
         }catch (InterruptedException e){
             e.fillInStackTrace();
         }
