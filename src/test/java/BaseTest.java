@@ -1,27 +1,24 @@
 import io.appium.java_client.android.AndroidDriver;
+
 import org.apache.commons.lang3.SystemUtils;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import sun.plugin2.util.SystemUtil;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BeforeTest {
-    private String apkDir = System.getProperty("apkDir");
+public class BaseTest {
     private String deviceName = System.getProperty("deviceName");
-    private String systemOS = System.getProperty("os.name");
 
 
+    protected static final String EMAIL = "testappricodetodoist2@gmail.com";
+    protected static final String USERNAME = "testAppricode";
+    protected static final String PASSWORD = "test123!@#";
 
-
-
-    private static AndroidDriver driver;
+    protected static AndroidDriver driver;
 
     @BeforeClass
     public void initiateDriver(){
@@ -31,7 +28,6 @@ public class BeforeTest {
         desiredCapabilities.setCapability("avd",deviceName.replace(" ","_"));
         desiredCapabilities.setCapability("deviceName",deviceName);
         desiredCapabilities.setCapability("app",System.getProperty("user.dir")+"/apk/Todoist_v12.8_apkpure.com.apk");
-//        desiredCapabilities.setCapability("fullReset",fullResrt);
         desiredCapabilities.setCapability("appWaitActivity", "*");
 
         try {
@@ -41,10 +37,6 @@ public class BeforeTest {
             e.fillInStackTrace();
         }
     }
-
-
-
-
 
     public void startServer(){
         Runtime runtime = Runtime.getRuntime();
@@ -69,7 +61,6 @@ public class BeforeTest {
         }
     }
 
-
     public void quitTask(){
         Runtime runtime = Runtime.getRuntime();
         if(SystemUtils.IS_OS_WINDOWS) {
@@ -89,17 +80,6 @@ public class BeforeTest {
             }
         }
     }
-
-//   // protected static AndroidDriver getDriver() {
-//        return driver;
-//    }
-
-//    private DesiredCapabilities setupDesiredCapabilities(){
-//
-//
-//
-//        return desiredCapabilities;
-//    }
 
     @AfterClass
     public void closeAppium(){
