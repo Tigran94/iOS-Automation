@@ -1,4 +1,5 @@
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -20,35 +21,35 @@ public class BeforeTest {
 
     @BeforeClass
     public void initiateDriver(){
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("platformName","Android");
+        desiredCapabilities.setCapability("deviceName",deviceName);
+        desiredCapabilities.setCapability("app",System.getProperty("user.dir")+"/apk/Todoist_v12.8_apkpure.com.apk");
+//        desiredCapabilities.setCapability("fullReset",fullResrt);
+        desiredCapabilities.setCapability("appWaitActivity", "*");
 
         try {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),setupDesiredCapabilities());
+
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
         }catch (MalformedURLException e){
             e.fillInStackTrace();
         }
     }
 
-    protected static AndroidDriver getDriver() {
-        return driver;
-    }
+//   // protected static AndroidDriver getDriver() {
+//        return driver;
+//    }
 
-    private DesiredCapabilities setupDesiredCapabilities(){
-
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME,"");
-        desiredCapabilities.setCapability("platformName","Android");
-        desiredCapabilities.setCapability("deviceName",deviceName);
-        desiredCapabilities.setCapability(CapabilityType.VERSION,version);
-        desiredCapabilities.setCapability("app",new File(apkDir).getAbsolutePath());
-        desiredCapabilities.setCapability("automationName",automatioName);
-        desiredCapabilities.setCapability("fullReset",fullResrt);
-
-        return desiredCapabilities;
-    }
+//    private DesiredCapabilities setupDesiredCapabilities(){
+//
+//
+//
+//        return desiredCapabilities;
+//    }
 
     @AfterClass
     public void closeAppium(){
-        driver.closeApp();
-        driver.close();
+        //driver.closeApp();
+//        driver.close();
     }
 }
