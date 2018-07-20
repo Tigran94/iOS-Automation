@@ -17,14 +17,4 @@ public class ApiHelper {
     public static JsonParser parser = new JsonParser();
     public static Gson gson = new GsonBuilder().create();
 
-    public static JsonObject createProject() {
-        HashMap projectMap = new HashMap();
-        projectMap.put("is_private", false);
-        projectMap.put("creation_template", 1);
-        projectMap.put(	"name", "Test Project Name " + randomString(5));
-        projectMap.put(	"description", "Test Project Description" + randomString(10));
-        String jsonString = gson.toJson(projectMap);
-        Response response = HttpClient.post("/projects", jsonString);
-        return getJsonObject(response);
-    }
 }
