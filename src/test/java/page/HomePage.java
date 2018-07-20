@@ -71,4 +71,11 @@ public class HomePage {
         }
         return false;
     }
+    public void clickProject(String projectName){
+        for(WebElement i:burgerMenuItemsTexts){
+            if(i.getText().equals(projectName)){
+                i.click();
+            }
+        }
+    }
 }

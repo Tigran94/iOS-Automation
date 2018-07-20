@@ -1,3 +1,5 @@
+package tests;
+
 import io.appium.java_client.android.AndroidDriver;
 
 import org.apache.commons.lang3.SystemUtils;
