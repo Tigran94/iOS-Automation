@@ -4,26 +4,25 @@ import api.HttpClient;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.HomePage;
-import page.LoginPage;
-import page.MainPage;
-import page.ProjectPage;
+import page.*;
 
 public class TestExample extends BaseTest {
     MainPage mainPage;
     LoginPage loginPage;
     HomePage homePage;
     ProjectPage projectPage;
+    TaskPage taskPage;
 
     @BeforeMethod
     public void setUp(){
-        mainPage = new MainPage(BaseTest.driver);
-        loginPage = new LoginPage(BaseTest.driver);
-        homePage = new HomePage(BaseTest.driver);
-        projectPage = new ProjectPage(BaseTest.driver);
+        mainPage = new MainPage(driver);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        projectPage = new ProjectPage(driver);
+        taskPage = new TaskPage(driver);
     }
     @Test
-    void test1(){
+    public void test1(){
         HttpClient.createProjct();
         mainPage.clickWithEmailButton();
         loginPage.setEmail(BaseTest.EMAIL);
@@ -42,7 +41,7 @@ public class TestExample extends BaseTest {
     }
 
     @Test
-    void test2(){
+    public void test2(){
         mainPage.clickWithEmailButton();
         loginPage.setEmail(BaseTest.EMAIL);
         loginPage.clickContinueWithEmailButton();
@@ -63,4 +62,29 @@ public class TestExample extends BaseTest {
 
         //TODO -> api call
     }
+
+    @Test
+    public void test3(){
+        mainPage.clickWithEmailButton();
+        loginPage.setEmail(BaseTest.EMAIL);
+        loginPage.clickContinueWithEmailButton();
+        loginPage.setPassword(BaseTest.PASSWORD);
+        loginPage.clickLoginButton();
+        try {
+            if(homePage.checkTimeZonePopup()){
+                homePage.clickTimeZoneYesButton();
+            }
+        }catch (Exception e){
+        }
+        homePage.clickBurgerMenu();
+        homePage.clickProject("Project1");
+        projectPage.clickTask("Task1");
+        taskPage.clickCompleteButton();
+
+        //TODO -> api call
+
+        Assert.assertTrue(projectPage.checkTask("Task1"),"Task isn't present");
+
+    }
+
 }
