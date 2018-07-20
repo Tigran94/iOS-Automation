@@ -3,7 +3,6 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -29,12 +28,10 @@ public class BeforeTest {
         }
     }
 
-    @Step
     protected static AndroidDriver getDriver() {
         return driver;
     }
 
-    @Step
     private DesiredCapabilities setupDesiredCapabilities(){
 
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
