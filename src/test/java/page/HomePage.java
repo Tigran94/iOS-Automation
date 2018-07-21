@@ -1,5 +1,6 @@
 package page;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by user on 7/20/18.
  */
 public class HomePage {
-    private AndroidDriver driver;
+    private AppiumDriver driver;
     private WebDriverWait wait;
 
     @FindBy(className = "android.widgetFrameLayout")
@@ -35,7 +36,7 @@ public class HomePage {
     @FindBy(className = "android.widget.TextView")
     private List<WebElement> burgerMenuItemsTexts;
 
-    public HomePage(AndroidDriver driver){
+    public HomePage(AppiumDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }

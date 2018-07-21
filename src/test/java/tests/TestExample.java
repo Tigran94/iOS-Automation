@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import page.*;
 import steps.LoginStep;
 
+import java.io.IOException;
+
 public class TestExample extends BaseTest {
     MainPage mainPage;
     LoginPage loginPage;
@@ -61,13 +63,20 @@ public class TestExample extends BaseTest {
 
         HttpClient.uncompleteTask();
 
+        homePage.clickBurgerMenu();
+
         homePage.clickSettings();
 
-        settingsPage.scrollTo("Log out");
-        settingsPage.clickLogOutButton();
-        settingsPage.clickLogOutButton();
+        try {
+            settingsPage.scroll();
+            settingsPage.clickLogOutButton();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        settingsPage.clickLogoutYesButton();
 
         loginStep.login();
+        homePage.clickBurgerMenu();
         homePage.clickProjectsDownButton();
         homePage.clickProject("Project1");
         Assert.assertTrue(projectPage.checkTask("Task1"),"Task isn't present");

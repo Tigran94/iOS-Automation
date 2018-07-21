@@ -1,7 +1,7 @@
 package page;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by user on 7/21/18.
  */
 public class ProjectPage {
-    private AndroidDriver driver;
+    private AppiumDriver driver;
     private WebDriverWait wait;
 
     @FindBy(id = "fab")
@@ -41,7 +41,7 @@ public class ProjectPage {
     @AndroidFindBy(id = "content_toolbar_container")
     private WebElement mainContainer;
 
-    public ProjectPage(AndroidDriver driver){
+    public ProjectPage(AppiumDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }

@@ -1,5 +1,6 @@
 package steps;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import page.HomePage;
 import page.LoginPage;
@@ -14,12 +15,12 @@ public class LoginStep {
     MainPage mainPage;
     LoginPage loginPage;
     HomePage homePage;
-    private AndroidDriver driver;
+    private AppiumDriver driver;
     protected static final String EMAIL = "testappricodetodoist2@gmail.com";
     protected static final String USERNAME = "testAppricode";
     protected static final String PASSWORD = "test123!@#";
 
-    public LoginStep(AndroidDriver driver){
+    public LoginStep(AppiumDriver driver){
         this.driver = driver;
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);

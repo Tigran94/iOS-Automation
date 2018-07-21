@@ -1,5 +1,6 @@
 package tests;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 import org.apache.commons.lang3.SystemUtils;
@@ -16,7 +17,7 @@ public class BaseTest {
     private String deviceName = System.getProperty("deviceName");
 
 
-    protected static AndroidDriver driver;
+    protected static AppiumDriver driver;
 
     @BeforeClass
     public void initiateDriver(){

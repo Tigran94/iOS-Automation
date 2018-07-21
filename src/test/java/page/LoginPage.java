@@ -1,18 +1,17 @@
 package page;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by user on 7/20/18.
  */
 public class LoginPage {
-    private AndroidDriver driver;
+    private AppiumDriver driver;
     private WebDriverWait wait;
 
     @FindBy(id = "email_exists_input")
@@ -27,28 +26,24 @@ public class LoginPage {
     @FindBy(id = "btn_log_in")
     private WebElement loginButton;
 
-    public LoginPage(AndroidDriver driver){
+    public LoginPage(AppiumDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
     public void setEmail(String email){
-//        wait.until(ExpectedConditions.elementToBeClickable(emailField));
         emailField.sendKeys(email);
     }
 
     public void clickContinueWithEmailButton(){
-     //   wait.until(ExpectedConditions.elementToBeClickable(continueWithEmailButton)).click();\
         continueWithEmailButton.click();
     }
 
     public void setPassword(String password){
-     //   wait.until(ExpectedConditions.elementToBeClickable(passwordField));
         passwordField.sendKeys(password);
     }
 
     public void clickLoginButton(){
-       // wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
         loginButton.click();
 
     }
