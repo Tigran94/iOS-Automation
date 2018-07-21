@@ -46,17 +46,14 @@ public class HomePage {
     }
 
     public void clickTimeZoneNoButton(){
-       // wait.until(ExpectedConditions.elementToBeClickable(timeZoneNoButton)).click();
         timeZoneNoButton.click();
     }
     public void clickTimeZoneYesButton(){
-       // wait.until(ExpectedConditions.elementToBeClickable(timeZoneYesButton)).click();
         timeZoneYesButton.click();
     }
 
 
     public void clickBurgerMenu(){
-       // wait.until(ExpectedConditions.elementToBeClickable(burgerMenuButton)).click();
         burgerMenuButton.click();
         try {
             Thread.sleep(5000);
@@ -65,7 +62,6 @@ public class HomePage {
         }
     }
     public void clickProjectsDownButton(){
-       // wait.until(ExpectedConditions.elementToBeClickable(projectsDownButton)).click();
         projectsDownButton.get(0).click();
     }
 

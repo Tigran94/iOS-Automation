@@ -1,14 +1,11 @@
 package tests;
 
 import api.HttpClient;
-import io.appium.java_client.TouchAction;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.*;
 import steps.LoginStep;
-
-import java.io.IOException;
 
 public class TestExample extends BaseTest {
     MainPage mainPage;
