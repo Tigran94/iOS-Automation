@@ -1,11 +1,9 @@
 package steps;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import page.HomePage;
 import page.LoginPage;
 import page.MainPage;
-import tests.BaseTest;
 
 
 /**
