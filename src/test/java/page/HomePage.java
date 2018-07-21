@@ -84,4 +84,12 @@ public class HomePage {
             }
         }
     }
+    public void clickSettings(){
+        for(WebElement i:burgerMenuItemsTexts){
+            if(i.getText().equals("Settings")){
+                i.click();
+                break;
+            }
+        }
+    }
 }

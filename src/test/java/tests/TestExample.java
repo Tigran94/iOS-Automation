@@ -1,10 +1,12 @@
 package tests;
 
 import api.HttpClient;
+import io.appium.java_client.TouchAction;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.*;
+import steps.LoginStep;
 
 public class TestExample extends BaseTest {
     MainPage mainPage;
@@ -12,7 +14,8 @@ public class TestExample extends BaseTest {
     HomePage homePage;
     ProjectPage projectPage;
     TaskPage taskPage;
-
+    LoginStep loginStep;
+    SettingsPage settingsPage;
     @BeforeMethod
     public void setUp(){
         mainPage = new MainPage(driver);
@@ -20,21 +23,13 @@ public class TestExample extends BaseTest {
         homePage = new HomePage(driver);
         projectPage = new ProjectPage(driver);
         taskPage = new TaskPage(driver);
+        loginStep = new LoginStep(driver);
+        settingsPage = new SettingsPage(driver);
     }
     @Test
     public void test1(){
         HttpClient.createProjct();
-        mainPage.clickWithEmailButton();
-        loginPage.setEmail(BaseTest.EMAIL);
-        loginPage.clickContinueWithEmailButton();
-        loginPage.setPassword(BaseTest.PASSWORD);
-        loginPage.clickLoginButton();
-        try {
-            if(homePage.checkTimeZonePopup()){
-                homePage.clickTimeZoneYesButton();
-            }
-        }catch (Exception e){
-        }
+        loginStep.login();
         homePage.clickBurgerMenu();
         homePage.clickProjectsDownButton();
         Assert.assertTrue(homePage.checkProject("Project1"),"Project isn't present");
@@ -42,17 +37,7 @@ public class TestExample extends BaseTest {
 
     @Test
     public void test2(){
-        mainPage.clickWithEmailButton();
-        loginPage.setEmail(BaseTest.EMAIL);
-        loginPage.clickContinueWithEmailButton();
-        loginPage.setPassword(BaseTest.PASSWORD);
-        loginPage.clickLoginButton();
-        try {
-            if(homePage.checkTimeZonePopup()){
-                homePage.clickTimeZoneYesButton();
-            }
-        }catch (Exception e){
-        }
+        loginStep.login();
         homePage.clickBurgerMenu();
         homePage.clickProjectsDownButton();
         homePage.clickProject("Project1");
@@ -66,17 +51,7 @@ public class TestExample extends BaseTest {
 
     @Test
     public void test3(){
-        mainPage.clickWithEmailButton();
-        loginPage.setEmail(BaseTest.EMAIL);
-        loginPage.clickContinueWithEmailButton();
-        loginPage.setPassword(BaseTest.PASSWORD);
-        loginPage.clickLoginButton();
-        try {
-            if(homePage.checkTimeZonePopup()){
-                homePage.clickTimeZoneYesButton();
-            }
-        }catch (Exception e){
-        }
+        loginStep.login();
         homePage.clickBurgerMenu();
         homePage.clickProjectsDownButton();
         homePage.clickProject("Project1");
@@ -86,6 +61,15 @@ public class TestExample extends BaseTest {
 
         HttpClient.uncompleteTask();
 
+        homePage.clickSettings();
+
+        settingsPage.scrollTo("Log out");
+        settingsPage.clickLogOutButton();
+        settingsPage.clickLogOutButton();
+
+        loginStep.login();
+        homePage.clickProjectsDownButton();
+        homePage.clickProject("Project1");
         Assert.assertTrue(projectPage.checkTask("Task1"),"Task isn't present");
 
     }

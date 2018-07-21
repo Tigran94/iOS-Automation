@@ -93,7 +93,7 @@ public class HttpClient {
         return responseJson.contains(taskName);
     }
 
-    public static void uncompleteTask(){
+    public static String uncompleteTask(){
         Response response;
         String responseJson;
         OkHttpClient client = new OkHttpClient();
@@ -116,5 +116,6 @@ public class HttpClient {
         } catch (IOException e) {
             throw new ApiException(e.getMessage());
         }
+        return responseJson;
     }
 }

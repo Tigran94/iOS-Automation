@@ -16,10 +16,6 @@ public class BaseTest {
     private String deviceName = System.getProperty("deviceName");
 
 
-    protected static final String EMAIL = "testappricodetodoist2@gmail.com";
-    protected static final String USERNAME = "testAppricode";
-    protected static final String PASSWORD = "test123!@#";
-
     protected static AndroidDriver driver;
 
     @BeforeClass

@@ -1,0 +1,42 @@
+package steps;
+
+import io.appium.java_client.android.AndroidDriver;
+import page.HomePage;
+import page.LoginPage;
+import page.MainPage;
+import tests.BaseTest;
+
+
+/**
+ * Created by user on 7/21/18.
+ */
+public class LoginStep {
+    MainPage mainPage;
+    LoginPage loginPage;
+    HomePage homePage;
+    private AndroidDriver driver;
+    protected static final String EMAIL = "testappricodetodoist2@gmail.com";
+    protected static final String USERNAME = "testAppricode";
+    protected static final String PASSWORD = "test123!@#";
+
+    public LoginStep(AndroidDriver driver){
+        this.driver = driver;
+        mainPage = new MainPage(driver);
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+
+    }
+    public void login() {
+        mainPage.clickWithEmailButton();
+        loginPage.setEmail(EMAIL);
+        loginPage.clickContinueWithEmailButton();
+        loginPage.setPassword(PASSWORD);
+        loginPage.clickLoginButton();
+        try {
+            if (homePage.checkTimeZonePopup()) {
+                homePage.clickTimeZoneYesButton();
+            }
+        } catch (Exception e) {
+        }
+    }
+}

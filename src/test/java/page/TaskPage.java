@@ -23,5 +23,10 @@ public class TaskPage {
 
     public void clickCompleteButton(){
         completeButton.click();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
