@@ -4,30 +4,28 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by user on 7/20/18.
  */
 public class LoginPage {
     private AppiumDriver driver;
-    private WebDriverWait wait;
 
-    @FindBy(id = "email_exists_input")
+    @FindBy(id = "")
     private WebElement emailField;
 
-    @FindBy(id = "btn_continue_with_email")
+    @FindBy(id = "")
     private WebElement continueWithEmailButton;
 
-    @FindBy(id = "log_in_password")
+    @FindBy(id = "")
     private WebElement passwordField;
 
-    @FindBy(id = "btn_log_in")
+    @FindBy(id = "")
     private WebElement loginButton;
 
     public LoginPage(AppiumDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+      //  PageFactory.initElements(driver,this);
     }
 
     public void setEmail(String email){

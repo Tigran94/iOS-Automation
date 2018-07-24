@@ -1,8 +1,9 @@
 package tests;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -14,9 +15,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseTest {
-    private String deviceName = System.getProperty("deviceName");
-
-
     protected static AppiumDriver driver;
 
     @BeforeClass
@@ -24,14 +22,19 @@ public class BaseTest {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
         desiredCapabilities.setCapability("deviceReadyTimeout",10);
-        desiredCapabilities.setCapability("avd",deviceName.replace(" ","_"));
-        desiredCapabilities.setCapability("deviceName",deviceName);
-        desiredCapabilities.setCapability("app",System.getProperty("user.dir")+"/apk/Todoist_v12.8_apkpure.com.apk");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM,"8.1");
+        desiredCapabilities.setCapability("automationName", "XCUITest");
+        desiredCapabilities.setCapability("deviceName", "Localization");
+        desiredCapabilities.setCapability("udid", "6F57680D-F5F0-49AF-811F-87B3143E6F9B");
+        desiredCapabilities.setCapability("deviceName","iPhone 8");
+        desiredCapabilities.setCapability("app",System.getProperty("user.dir")+ "/src/test/resource/iosFiles/Insta.ipa");
         desiredCapabilities.setCapability("appWaitActivity", "*");
-
+        desiredCapabilities.setCapability(MobileCapabilityType.TAKES_SCREENSHOT, "true");
+        desiredCapabilities.setCapability("noReset", "true");
         try {
             startServer();
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
+            driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
         }catch (MalformedURLException e){
             e.fillInStackTrace();
         }
@@ -83,7 +86,5 @@ public class BaseTest {
     @AfterClass
     public void closeAppium(){
         quitTask();
-        //driver.closeApp();
-//        driver.close();
     }
 }

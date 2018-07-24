@@ -10,13 +10,6 @@
 
 
     <properties>
-        <apkDir>C:\ToDoList\apk\Todoist_v12.8_apkpure.com.apk</apkDir>
-        <deviceName>Nexus 5X API 27</deviceName>
-        <version>8.1</version>
-        <!--<appPackage>com.todoist</appPackage>-->
-        <!--<appActivity>com.todoist.activity.WelcomeActivity</appActivity>-->
-        <!--<automationName>Appium</automationName>-->
-        <fullReset>false</fullReset>
     </properties>
 
     <build>
@@ -45,10 +38,6 @@
                 <version>2.21.0</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <apkDir>${apkDir}</apkDir>
-                        <deviceName>${deviceName}</deviceName>
-                        <version>${version}</version>
-                        <fullReset>${fullReset}</fullReset>
                     </systemPropertyVariables>
                 </configuration>
 
@@ -77,7 +66,6 @@
             <artifactId>okhttp</artifactId>
             <version>3.10.0</version>
         </dependency>
-
     </dependencies>
 
 
